@@ -29,7 +29,7 @@ const init = () => {
     inquirer.prompt(questions).then(function(response){
         const { title } = response;
         const { description } = response;
-        writeToFile("README.md", 
+        writeToFile("READMETEST.md", 
         generateMarkdown(response));
     });
 }

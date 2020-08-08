@@ -5,14 +5,49 @@ const generateMarkdown = require("./utils/generateMarkdown.js");
 const questions = [
     {
         type: "input",
+        message: "What is your Github username?",
+        name: "userName"
+    },
+    {
+        type: "input",
+        message: "What Github repo would you like this README to be for?",
+        name: "repoName"
+    },
+    {
+        type: "input",
         message: "What is your Project Title?",
         name: "title"
     },
     {
         type: "input",
-        message: "What is your Description?",
+        message: "Please enter a description for your project.",
         name: "description"
     },
+    {
+        type: "input",
+        message: "What are the steps required to install your project?",
+        name: "installation"
+    },
+    {
+        type: "input",
+        message: "Provide instructions and examples for use.",
+        name: "usage"
+    },
+    {
+        type: "input",
+        message: "What licenses are used for this project?",
+        name: "license"
+    },
+    {
+        type: "input",
+        message: "Who contributed with this project?",
+        name: "contributing"
+    },
+    {
+        type: "input",
+        message: "Include any tests for this application and how to run them.",
+        name: "tests"
+    }
 ];
 
 const writeToFile = (fileName, data) => {
@@ -27,8 +62,6 @@ const writeToFile = (fileName, data) => {
 
 const init = () => {
     inquirer.prompt(questions).then(function(response){
-        const { title } = response;
-        const { description } = response;
         writeToFile("READMETEST.md", 
         generateMarkdown(response));
     });

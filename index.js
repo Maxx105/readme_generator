@@ -1,5 +1,6 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+const generateMarkdown = require("./utils/generateMarkdown.js");
 
 const questions = [
     {
@@ -12,11 +13,6 @@ const questions = [
         message: "What is your Description?",
         name: "description"
     },
-    {
-        type: "input",
-        message: "What is your Table of Contents?",
-        name: "contents"
-    }
 ];
 
 const writeToFile = (fileName, data) => {
@@ -25,6 +21,7 @@ const writeToFile = (fileName, data) => {
             return console.log(err);
         }
         console.log("SUCCESS");
+        
     })
 }
 
@@ -32,8 +29,8 @@ const init = () => {
     inquirer.prompt(questions).then(function(response){
         const { title } = response;
         const { description } = response;
-        const { contents } = response;
-        writeToFile("READMETEST.md", `Title: ${title}` + '\n' +  `Description: ${description}` + '\n' + `Table of Contents: ${contents}`);
+        writeToFile("README.md", 
+        generateMarkdown(response));
     });
 }
 

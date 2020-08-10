@@ -87,7 +87,7 @@ function init() {
         const queryUrl = `https://api.github.com/users/${response.userName}/events/public?per_page=1`;
         await axios.get(queryUrl).then(function(res) {
             console.log(res.data[0].actor.avatar_url);
-            response.picture = res.data[0].actor.avatar_url
+            response.picture = res.data[0].actor.avatar_url;
             //console.log(res.data.payload.commits[0].author.email);
         });
         await writeToFile("READMETEST.md", generateMarkdown(response));

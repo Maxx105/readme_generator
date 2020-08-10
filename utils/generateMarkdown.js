@@ -9,7 +9,8 @@ function generateMarkdown(data) {
 ## Contributing \n ${data.contributing}
 ## Badges \n ![languages badge](https://img.shields.io/github/languages/top/${data.userName}/${data.repoName})
 ## Tests \n ${data.tests}
-## Questions \n For any questions, contact me at [${data.email}](mailto:${data.email}) \n ![Profile Pic](${data.picture}).
+## Questions \n For any questions, contact me at [${data.email}](mailto:${data.email}).
+#### ![Profile Pic](${data.picture})
 `;
 }
 

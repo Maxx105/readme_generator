@@ -40,7 +40,7 @@ const questions = [
     },
     {
         type: "input",
-        message: "Would you like to add step by step installation instructions?",
+        message: "What are the steps required to install your project?",
         name: "installation"
     },
     {
@@ -86,9 +86,7 @@ function init() {
     inquirer.prompt(questions).then(async function(response){
         const queryUrl = `https://api.github.com/users/${response.userName}/events/public?per_page=1`;
         await axios.get(queryUrl).then(function(res) {
-            console.log(res.data[0].actor.avatar_url);
             response.picture = res.data[0].actor.avatar_url;
-            //console.log(res.data.payload.commits[0].author.email);
         });
         await writeToFile("READMETEST.md", generateMarkdown(response));
     });

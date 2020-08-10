@@ -1,5 +1,5 @@
 
-# README GENERATOR 
+# README PROJECT TITLE 
 
 ## Description 
  DESCRIPTION
@@ -11,17 +11,17 @@
 * [Badges](#Badges)
 * [Tests](#Tests)
 ## Installation 
- INSTRUCTIONS
+ INSTALLATION INSTRUCITONS
 ## Usage 
- INSTRUCTIONS
+ INSTRUCTIONS AND EXMAPLES
 ## License 
- LICENSES
+ LICENSES HERE
 ## Contributing 
  ME
 ## Badges 
  ![languages badge](https://img.shields.io/github/languages/top/maxx105/readme_generator)
 ## Tests 
- TESTS
+ APPLICATIONS!
 ## Questions 
  For any questions, contact me at [maxxsanner105@gmail.com](mailto:maxxsanner105@gmail.com).
-#### [![Profile Pic](https://avatars.githubusercontent.com/u/63183869?)](https://github.com/Maxx105)
+#### [![Profile Pic](https://avatars.githubusercontent.com/u/63183869?)](https://github.com/maxx105)

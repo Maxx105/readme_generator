@@ -1,8 +1,8 @@
 
-#  
+# README GENERATOR 
 
 ## Description 
- 
+ enter description here
 ## Table of Contents 
 * [Installation](#Installation)
 * [Usage](#Usage)
@@ -12,11 +12,14 @@
 * [Tests](#Tests)
 * [Questions](#Questions)
 ## Installation 
-* gdsgs
+* STEP ONE HERE!
+* STEP TWO!
+* STEP THREE!!
+* STEP FOUR HERE!
 ## Usage 
- 
+ Instructions here
 ## License 
- 
+ licenses here
 ## Contributing 
  ### Contributor Covenant Code of Conduct
 
@@ -148,9 +151,9 @@ https://www.contributor-covenant.org/faq. Translations are available at
 https://www.contributor-covenant.org/translations.
 
 ## Badges 
- ![languages badge](https://img.shields.io/github/languages/top/maxx105/)
+ ![languages badge](https://img.shields.io/github/languages/top/maxx105/readme_generator)
 ## Tests 
- fsgs
+ TESTS go here
 ## Questions 
- For any questions, contact me at [](mailto:).
+ For any questions, contact me at [maxxsanner105@gmail.com](mailto:maxxsanner105@gmail.com).
 #### [![Profile Pic](https://avatars.githubusercontent.com/u/63183869?)](https://github.com/maxx105)

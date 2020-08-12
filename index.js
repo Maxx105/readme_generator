@@ -129,7 +129,7 @@ async function init() {
                     Object.entries(installStepsObject).forEach(item => installArray.push('\n* ' + item[1]));
                     install = installArray.join('');
 
-                    // the writeToFile function includes the fs.writeFile function which creates the markdown and writes it to the README.
+                    // This gives the user the ability to add the contributor covenant to their readme. It does a fs.readFile to capture the contributorCovenant.md text.
                     if (allData.contributing) {
                         fs.readFile('contributorCovenant.md', 'utf8', function(error, data){
                             if (error) {

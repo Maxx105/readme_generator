@@ -129,7 +129,7 @@ async function init() {
                     install = installArray.join('');
 
                     // the writeToFile function includes the fs.writeFile function which creates the markdown and writes it to the README.
-                    writeToFile("READMETEST.md", generateMarkdown(allData, install));
+                    writeToFile("README.md", generateMarkdown(allData, install));
                 });
             }  
         }

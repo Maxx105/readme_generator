@@ -3,21 +3,7 @@ const inquirer = require("inquirer");
 const axios = require("axios");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
-const installSteps = [
-    {
-        type: "input",
-        message: "Step",
-        name: 'step'
-    },
-    {
-        type: "confirm",
-        message: "Add another Step?",
-        name: ''
-    },
-];
-
-
-const questions = [
+const questions1 = [
     {
         type: "input",
         message: "What is your Github username?",
@@ -39,10 +25,13 @@ const questions = [
         name: "description"
     },
     {
-        type: "input",
-        message: "What are the steps required to install your project?",
+        type: "confirm",
+        message: "Would you like to add installation steps?",
         name: "installation"
     },
+];
+
+const questions2 = [
     {
         type: "input",
         message: "Provide instructions and examples for use.",
@@ -68,7 +57,6 @@ const questions = [
         message: "What is your contact email address?",
         name: "email"
     }
-
 ];
 
 const writeToFile = (fileName, data) => {
@@ -76,76 +64,80 @@ const writeToFile = (fileName, data) => {
         if (err) {
             return console.log(err);
         }
-        console.log("SUCCESS");
-        
     })
 }
 
-function init() {
+let questionsObject = {};
+let allData = {};
+let installStepCount = 1;
+let installStepsArray = [];
+let install = '';
+let allDataArray = [];
+
+async function init() {
     
-    inquirer.prompt(questions).then(async function(response){
+    await inquirer.prompt(questions1).then(async function(response){
         const queryUrl = `https://api.github.com/users/${response.userName}/events/public?per_page=1`;
-        await axios.get(queryUrl).then(function(res) {
-            response.picture = res.data[0].actor.avatar_url;
-        });
-        await writeToFile("READMETEST.md", generateMarkdown(response));
+
+        await axios.get(queryUrl).then(res => response.picture = res.data[0].actor.avatar_url);
+
+        questionsObject = response;
+
+        const stepPrompts = (confirmValue, inputName, confirmName) => {
+            installStepsArray.push(installStepCount-1);
+            installStepCount++;
+
+            
+            //installSteps = installStepsArray.map(steps => `\n* step ${steps}`);
+            
+            const installQuestions = [
+                {
+                    type: "input",
+                    message: `Step ${installStepCount - 1}:`,
+                    name: inputName
+                },
+                {
+                    type: "confirm",
+                    message: "Would you like to add another step?",
+                    name: confirmName
+                },
+            ];
+            if (confirmValue) {
+                inquirer.prompt(installQuestions).then(function(response){
+
+                    questionsObject[inputName] = response[inputName];
+                
+                    confirmValue = response.stepConfirm;
+
+                    stepPrompts(confirmValue, `step${installStepCount}`, `stepConfirm`);
+
+                    writeToFile("READMETEST.md", generateMarkdown(questionsObject, install));
+                });
+            } else {
+                inquirer.prompt(questions2).then(function(response2){
+                    allData = {
+                        ...questionsObject,
+                        ...response2
+                    }
+                    console.log(allData);
+                    allDataArray = Object.entries(allData);
+                    // console.log(allDataArray);
+                    // for (i = 0; i < allDataArray.length; i++){
+                    //     if (allDataArray[i][0].includes('step')) {
+                    //         console.log(allDataArray[i][0]);
+                            
+                    //     }
+                    // }
+                    writeToFile("READMETEST.md", generateMarkdown(allData, install));
+                });
+            }  
+        }
+
+        stepPrompts(response.installation, `step${installStepCount}`, `stepConfirm`);
+
     });
 
 }
 
 init();
-
- // let data = {};
-    
-    // for (i = 0; i < questions.length; i++){
-    //     await inquirer.prompt(questions[i]).then(function(response){
-    //         let questionKey = questions[i].name;
-    //         console.log(questionKey);
-    //         data.questionKey = response.questionKey;
-    //         //data.userName = response.userName
-    //         console.log(data);
-    //     });
-    // }
-
-    // await inquirer.prompt(questions[1]).then(function(response){
-    //     data.repoName = response.repoName;
-    //     console.log(data);
-    // });
-
-    // await inquirer.prompt(questions[2]).then(function(response){
-    //     data.title = response.title;
-    //     console.log(data);
-    // });
-
-    // await inquirer.prompt(questions[3]).then(function(response){
-    //     data.description = response.description;
-    //     console.log(data);
-    // });
-
-    // await inquirer.prompt(questions[4]).then(function(response){
-    //     data.installation = response.installation;
-    //     console.log(data);
-    // });
-
-    // await inquirer.prompt(questions[5]).then(function(response){
-    //     data.usage = response.usage;
-    //     console.log(data);
-    // });
-
-    // await inquirer.prompt(questions[6]).then(function(response){
-    //     data.license = response.license;
-    //     console.log(data);
-    // });
-
-    // await inquirer.prompt(questions[7]).then(function(response){
-    //     data.contributing = response.contributing;
-    //     console.log(data);
-    // });
-
-    // await inquirer.prompt(questions[8]).then(function(response){
-    //     data.tests = response.tests;
-    //     console.log(data);
-    // });
-
-    // await writeToFile("READMETEST.md", generateMarkdown(data));
 

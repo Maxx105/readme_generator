@@ -4,7 +4,7 @@ function generateMarkdown(data, install) {
 # ${data.title} \n
 ## Description \n ${data.description}
 ## Table of Contents \n* [Installation](#Installation)\n* [Usage](#Usage)\n* [License](#License)\n* [Contributing](#Contributing)\n* [Badges](#Badges)\n* [Tests](#Tests)\n* [Questions](#Questions)
-## Installation ${install}
+## Installation \n* ${install}
 ## Usage \n ${data.usage}
 ## License \n ${data.license}
 ## Contributing \n ${data.contributing}

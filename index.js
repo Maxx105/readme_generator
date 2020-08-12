@@ -70,9 +70,11 @@ const writeToFile = (fileName, data) => {
 let questionsObject = {};
 let allData = {};
 let installStepCount = 1;
-let installStepsArray = [];
+
+let installStepsObject = {};
+
+let installArray = [];
 let install = '';
-let allDataArray = [];
 
 async function init() {
     
@@ -84,11 +86,7 @@ async function init() {
         questionsObject = response;
 
         const stepPrompts = (confirmValue, inputName, confirmName) => {
-            installStepsArray.push(installStepCount-1);
             installStepCount++;
-
-            
-            //installSteps = installStepsArray.map(steps => `\n* step ${steps}`);
             
             const installQuestions = [
                 {
@@ -106,11 +104,10 @@ async function init() {
                 inquirer.prompt(installQuestions).then(function(response){
 
                     questionsObject[inputName] = response[inputName];
-                
+                    installStepsObject[inputName] = response[inputName];
+
                     confirmValue = response.stepConfirm;
-
                     stepPrompts(confirmValue, `step${installStepCount}`, `stepConfirm`);
-
                     writeToFile("READMETEST.md", generateMarkdown(questionsObject, install));
                 });
             } else {
@@ -119,15 +116,10 @@ async function init() {
                         ...questionsObject,
                         ...response2
                     }
-                    console.log(allData);
-                    allDataArray = Object.entries(allData);
-                    // console.log(allDataArray);
-                    // for (i = 0; i < allDataArray.length; i++){
-                    //     if (allDataArray[i][0].includes('step')) {
-                    //         console.log(allDataArray[i][0]);
-                            
-                    //     }
-                    // }
+
+                    Object.entries(installStepsObject).forEach(item => installArray.push(item[1]));
+                    install = installArray.join('\n* ');
+
                     writeToFile("READMETEST.md", generateMarkdown(allData, install));
                 });
             }  

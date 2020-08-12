@@ -1,24 +1,4 @@
-
-#  
-
-## Description 
- 
-## Table of Contents 
-* [Installation](#Installation)
-* [Usage](#Usage)
-* [License](#License)
-* [Contributing](#Contributing)
-* [Badges](#Badges)
-* [Tests](#Tests)
-* [Questions](#Questions)
-## Installation 
-* gdsgs
-## Usage 
- 
-## License 
- 
-## Contributing 
- ### Contributor Covenant Code of Conduct
+### Contributor Covenant Code of Conduct
 
 #### Our Pledge
 
@@ -146,11 +126,3 @@ enforcement ladder](https://github.com/mozilla/diversity).
 For answers to common questions about this code of conduct, see the FAQ at
 https://www.contributor-covenant.org/faq. Translations are available at
 https://www.contributor-covenant.org/translations.
-
-## Badges 
- ![languages badge](https://img.shields.io/github/languages/top/maxx105/)
-## Tests 
- fsgs
-## Questions 
- For any questions, contact me at [](mailto:).
-#### [![Profile Pic](https://avatars.githubusercontent.com/u/63183869?)](https://github.com/maxx105)

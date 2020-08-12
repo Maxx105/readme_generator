@@ -43,8 +43,8 @@ const questions2 = [
         name: "license"
     },
     {
-        type: "input",
-        message: "Who contributed with this project?",
+        type: "confirm",
+        message: "Would you like to add the Contributor Covenant to your README?",
         name: "contributing"
     },
     {
@@ -75,6 +75,7 @@ let installStepCount = 1;
 let installStepsObject = {};
 let installArray = [];
 let install = '';
+let contributing = '';
 
 async function init() {
     
@@ -129,7 +130,18 @@ async function init() {
                     install = installArray.join('');
 
                     // the writeToFile function includes the fs.writeFile function which creates the markdown and writes it to the README.
-                    writeToFile("README.md", generateMarkdown(allData, install));
+                    if (allData.contributing) {
+                        fs.readFile('contributorCovenant.md', 'utf8', function(error, data){
+                            if (error) {
+                                return console.log(error);
+                            }
+                            contributing = data;  
+                            writeToFile("README.md", generateMarkdown(allData, install, contributing));
+                        })  
+                    } else {
+                        writeToFile("README.md", generateMarkdown(allData, install, ''));
+                    }
+                    
                 });
             }  
         }

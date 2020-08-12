@@ -1,4 +1,4 @@
-function generateMarkdown(data, install) {
+function generateMarkdown(data, install, contributing) {
   
   return `
 # ${data.title} \n
@@ -7,7 +7,7 @@ function generateMarkdown(data, install) {
 ## Installation ${install}
 ## Usage \n ${data.usage}
 ## License \n ${data.license}
-## Contributing \n ${data.contributing}
+## Contributing \n ${contributing}
 ## Badges \n ![languages badge](https://img.shields.io/github/languages/top/${data.userName}/${data.repoName})
 ## Tests \n ${data.tests}
 ## Questions \n For any questions, contact me at [${data.email}](mailto:${data.email}).

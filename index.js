@@ -63,16 +63,16 @@ const writeToFile = (fileName, data) => {
     fs.writeFile(fileName, data, function(err) {
         if (err) {
             return console.log(err);
-        }
+        } 
+
+        console.log("Success!");
     })
 }
 
 let questionsObject = {};
 let allData = {};
 let installStepCount = 1;
-
 let installStepsObject = {};
-
 let installArray = [];
 let install = '';
 
@@ -81,13 +81,17 @@ async function init() {
     await inquirer.prompt(questions1).then(async function(response){
         const queryUrl = `https://api.github.com/users/${response.userName}/events/public?per_page=1`;
 
+        // This pulls the profile picture url based on the github username that the user entered.
         await axios.get(queryUrl).then(res => response.picture = res.data[0].actor.avatar_url);
 
         questionsObject = response;
 
         const stepPrompts = (confirmValue, inputName, confirmName) => {
+
+            // Each time the stepPrompts function is called, the installStepCount is increased by one.
             installStepCount++;
             
+            // Theses are the base install questions. The step message is incremented by 1 to let the user known which step they are adding
             const installQuestions = [
                 {
                     type: "input",
@@ -102,29 +106,35 @@ async function init() {
             ];
             if (confirmValue) {
                 inquirer.prompt(installQuestions).then(function(response){
-
+                    // These push each installation step key and value to the questionsObject as well as the installStepsObject(which is used to later append the steps to the markdown)
                     questionsObject[inputName] = response[inputName];
                     installStepsObject[inputName] = response[inputName];
 
+                    // This continues the installation steps sequence. As long as the user is pressing yes, it will pass a true to the confirmValue parameter on the function, thus initiating more step requests.
                     confirmValue = response.stepConfirm;
+
+                    // using the installStepCount variable, we are able to the keys of the installation step increment by one.
                     stepPrompts(confirmValue, `step${installStepCount}`, `stepConfirm`);
-                    writeToFile("READMETEST.md", generateMarkdown(questionsObject, install));
                 });
             } else {
                 inquirer.prompt(questions2).then(function(response2){
+                    // this combines all of the data from the first set of questions and the second set of questions
                     allData = {
                         ...questionsObject,
                         ...response2
                     }
 
-                    Object.entries(installStepsObject).forEach(item => installArray.push(item[1]));
-                    install = installArray.join('\n* ');
+                    // This sets the install variable to a string of all the values of the installation steps, each preceded by a \n*. This is carried over to the generatedMarkdown.js function to append it to the Installation section of the readme.
+                    Object.entries(installStepsObject).forEach(item => installArray.push('\n* ' + item[1]));
+                    install = installArray.join('');
 
+                    // the writeToFile function includes the fs.writeFile function which creates the markdown and writes it to the README.
                     writeToFile("READMETEST.md", generateMarkdown(allData, install));
                 });
             }  
         }
 
+        // the response.installation sets 
         stepPrompts(response.installation, `step${installStepCount}`, `stepConfirm`);
 
     });

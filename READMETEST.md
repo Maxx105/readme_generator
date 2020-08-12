@@ -2,7 +2,7 @@
 # README GENERATOR 
 
 ## Description 
- DESCRIPTION!
+ DESCRIPTION GOES HERE!
 ## Table of Contents 
 * [Installation](#Installation)
 * [Usage](#Usage)
@@ -14,11 +14,11 @@
 ## Installation 
 * STEP ONE GOES HERE!
 * STEP TWO GOES HERE!!
-* STEP THREE GOES HERE!
+* STEP THREE GOES HERE
 ## Usage 
  INSTRUCTIONS GO HERE!
 ## License 
- LICENSES GO HERE
+ LICENSES GO HERE!
 ## Contributing 
  CONTRIBUTORS GO HERE!
 ## Badges 

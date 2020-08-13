@@ -129,7 +129,7 @@ async function init() {
                     Object.entries(installStepsObject).forEach(item => installArray.push('\n* ' + item[1]));
                     install = installArray.join('');
 
-                    // This gives the user the ability to add the contributor covenant to their readme. It does a fs.readFile to capture the contributorCovenant.md text.
+                    // This gives the user the ability to add the contributor covenant to their readme. It does a fs.readFile to capture the contributorCovenant.md text
                     if (allData.contributing) {
                         fs.readFile('contributorCovenant.md', 'utf8', function(error, data){
                             if (error) {

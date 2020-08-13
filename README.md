@@ -18,7 +18,7 @@
 ## Usage 
  Once you have the necessary files, open a terminal in your repo and run "node index.js". It will begin by asking you for your Github username. Make sure this is correct as it uses this to pull the correct badge and profile picture. It will also ask you for the name of the repo that this is for which is also used to pull the correct badge. The following questions will create text that is actually appended to the README. When you get the installation steps question, there is a series of prompts to ask if you want to add steps. You can add as many steps as you want and soon as you say no, it will continue with the rest of the questions. One of the next questions asks if you want to add the contributors coventant which is an industry standard list of guidelines for contributing to a project. The last question asks you for your email address which provides a link to your email on the README. It will also appened a profile picture (based on the github username that was entered) which becomes a link that brings you to that user's Github profile.
 ## License 
- No licenses currently
+ ISC
 ## Contributing 
  ### Contributor Covenant Code of Conduct
 
@@ -156,3 +156,4 @@ https://www.contributor-covenant.org/translations.
 ## Questions 
  For any questions, contact me at [maxxsanner105@gmail.com](mailto:maxxsanner105@gmail.com).
 #### [![Profile Pic](https://avatars.githubusercontent.com/u/63183869?)](https://github.com/maxx105)
+
